@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require('fs');
 const args = require('minimist')(process.argv.slice(2));
 const chokidar = require('chokidar');
@@ -6,7 +7,13 @@ const readline = require('readline');
 // output path to write shaders to 
 let outputDir = null;
 
+// paths to vertex and fragment shaders
 let vertex,fragment = null;
+
+// path to a modules directory, if this is null, then the watcher will only react to changes in your 
+// vertex and fragment shaders. 
+let modules = null;
+
 
 // if we have an output path, save it, this will overwrite anything previously saved. 
 if(args.hasOwnProperty("outputDir")){
@@ -42,7 +49,7 @@ function setupProcess(){
 
         
         const watcher = chokidar.watch([
-            args.vertex,args.fragment
+            args.vertex,args.fragment, args.modules !== undefined ? args.modules : ""
         ]);
      
 
@@ -73,7 +80,7 @@ function processShader(file){
 
     return new Promise((res,rej) => {
 
-        // ========== PARSE VERTEX SHADER ============== //
+        // ========== PARSE SHADER ============== //
         let shader = "";
         let reader = readline.createInterface({
             input:fs.createReadStream(file)
@@ -83,10 +90,6 @@ function processShader(file){
         // read line by line, replace include statements with files specified. 
         reader.on('line',line => {
         if(line.search("#include") !== -1){
-           
-           // include takes up this many parts
-           let stride = 9;
-
           
            // isolate include statement 
            let p = line.split("#include ");
@@ -96,6 +99,8 @@ function processShader(file){
 
           
            try {
+               // When you include files, the path is currently treated as a relative path based on where you run this tool. 
+               // TODO need to figure out what the best way is on how to resolve where included files are
                let importedFile = fs.readFileSync(file,"utf8");
            
                line = importedFile;

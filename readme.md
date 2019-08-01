@@ -10,6 +10,7 @@ How to use
 - `npm install` (TODO update with better directions, it's slightly different if I remember correctly with command line tools)
 - `glsl-builder` + options
 - add `#include <filename>` to your files.   
+- There will be a watch process started so things will re-compile with every change. 
 
 Options
 =====

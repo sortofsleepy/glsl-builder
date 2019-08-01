@@ -6,8 +6,11 @@
   "scripts": {
     "start": "node index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "bin": {
+    "glsl-builder": "./index.js"
+  },
+  "author": "Joseph Chow",
+  "license": "MIT",
   "dependencies": {
     "chokidar": "^3.0.2",
     "minimist": "^1.2.0"
