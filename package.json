@@ -1,0 +1,15 @@
+{
+  "name": "shader-compiler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chokidar": "^3.0.2",
+    "minimist": "^1.2.0"
+  }
+}
