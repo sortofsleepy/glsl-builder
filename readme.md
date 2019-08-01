@@ -1,21 +1,21 @@
 GLSL-HELPER
 =====
 
-THis is a simple command line helper for making it simpler to separate chunks of glsl into different files.(though technically this will work 
+This is a simple command line helper for making it simpler to separate chunks of glsl into different files.(though technically this will work 
 with any text based file)
 
 
 How to use 
 ===
-- `npm install`
-- `<name tbd>` + options
+- `npm install` (TODO update with better directions, it's slightly different if I remember correctly with command line tools)
+- `glsl-builder` + options
 - add `#include <filename>` to your files.   
 
 Options
 =====
-- outputPath: "the path to output the compiled files too"
-- vertex: path to vertex shader
-- fragment: path to fragment shader
+- `--outputPath`: the path to output the compiled files too
+- `--vertex`: path to vertex shader
+- `--fragment`: path to fragment shader
 
 
 Notes 
